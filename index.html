@@ -1,0 +1,36 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <p>DO NOT INCLUDE KAMERON IN AMOUNT OF PEOPLE</p>
+    <p>amount of people for airsoft</p>
+    <input type="number" id="airsoft_ppl" min="0" max="20">
+    <button onclick="airsoft_math()">submit</button>
+    <br>
+    <p>amound of people for gym</p>
+    <input type="number" id="gym_ppl" min="0" max="20">
+    <button onclick="gym_math()">submit</button>
+
+    <p>Cost per person for airsoft</p>
+    <input type="text" id="airsoft_cost">
+    <br>
+    <p>Cost per person for gym</p>
+    <input type="text" id="gym_cost">
+    <script>
+        function airsoft_math() {
+            var num_of_ppl = document.getElementById("airsoft_ppl").value
+            var cost_per_person = document.getElementById("airsoft_cost")
+            cost_per_person.value = Math.round((450 + (30 * (num_of_ppl - 4))) / num_of_ppl)
+        }
+        function gym_math() {
+            var num_of_ppl = document.getElementById("gym_ppl").value
+            var cost_per_person = document.getElementById("gym_cost")
+            cost_per_person.value = Math.round((475 / num_of_ppl)) + " with " + Math.round((475 / num_of_ppl) * .3) + " refundable"
+        }
+    </script>
+</body>
+
+</html>
