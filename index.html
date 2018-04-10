@@ -7,28 +7,48 @@
 <body>
     <p>DO NOT INCLUDE KAMERON IN AMOUNT OF PEOPLE</p>
     <p>amount of people for airsoft</p>
-    <input type="number" id="airsoft_ppl" min="0" max="20">
-    <button onclick="airsoft_math()">submit</button>
+    <input type="number" id="airsoft_ppl" onchange="airsoft_math()" min="0" max="20">
     <br>
     <p>amound of people for gym</p>
-    <input type="number" id="gym_ppl" min="0" max="20">
-    <button onclick="gym_math()">submit</button>
+    <input type="number" onchange="gym_math()" id="gym_ppl" min="0" max="20">
 
     <p>Cost per person for airsoft</p>
     <input type="text" id="airsoft_cost">
     <br>
     <p>Cost per person for gym</p>
-    <input type="text" id="gym_cost">
+    <input type="text"  id="gym_cost">
+    <br>
+    <p>Total cost per person if doing both events</p>
+    <input type="text" id="total">
     <script>
         function airsoft_math() {
             var num_of_ppl = document.getElementById("airsoft_ppl").value
             var cost_per_person = document.getElementById("airsoft_cost")
             cost_per_person.value = Math.round((450 + (30 * (num_of_ppl - 4))) / num_of_ppl)
+            total_cost()
         }
         function gym_math() {
             var num_of_ppl = document.getElementById("gym_ppl").value
             var cost_per_person = document.getElementById("gym_cost")
             cost_per_person.value = Math.round((475 / num_of_ppl)) + " with " + Math.round((475 / num_of_ppl) * .3) + " refundable"
+            total_cost()
+        }
+        function total_cost() {
+            var num_of_ppl_airsoft = document.getElementById("airsoft_ppl").value
+            if (!num_of_ppl_airsoft < 1) {
+                var cost_airsoft = Math.round((450 + (30 * (num_of_ppl_airsoft - 4))) / num_of_ppl_airsoft)
+            }else {
+                var cost_airsoft = 0
+            }
+            var num_of_ppl_gym = document.getElementById("gym_ppl").value
+            if (!num_of_ppl_gym < 1) {
+                var cost_gym = Math.round((475 / num_of_ppl_gym))
+            }else {
+                var cost_gym = 0 
+            }
+            
+            
+            document.getElementById("total").value = cost_gym + cost_airsoft
         }
     </script>
 </body>
